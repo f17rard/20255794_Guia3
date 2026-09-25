@@ -94,3 +94,34 @@ a:hover, a:focus-visible {
     background-size: cover;
     background-position: center;
 }
+
+.presentacion h1 {
+    width: 760px;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.presentacion p{
+    max-width: 640px;
+}
+
+.sobretitulo{
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--color-acento);
+}
+
+.presentacion .sobretitulo{
+    color: var(--color-contraste);
+}
+
+.boton-principal{
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    color: white;
+    background: var(--color-acentos);
+    border-radius: 0.3rem;
+    text-decoration: none;
+}
