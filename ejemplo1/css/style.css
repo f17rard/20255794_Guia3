@@ -121,7 +121,42 @@ a:hover, a:focus-visible {
     margin-top: 1rem;
     padding: 0.75rem 1.25rem;
     color: white;
-    background: var(--color-acentos);
+    background-color: var(--color-acento);
     border-radius: 0.3rem;
     text-decoration: none;
 }
+
+.boton-principal:hover,
+.boton-principal:focus-visible{
+    color: var(--color-principal);
+    background-color: var(--color-contraste);
+}
+
+.seccion-maravillas{
+    padding: 3rem 0;
+}
+
+.titulo-seccion{
+    max-width: 680px;
+    padding-bottom: 2rem;
+}
+
+h2 {
+    margin: 0 0 0.75rem; 
+    font-size: 2rem;
+}
+
+.maravillas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* a) el flexbox forma una sola fila de las 7 maravillas
+   b) el ancho de las tarjetas se adapta a la unica fila y quedan todos pegados
+   c) El contenido no es comodo de leer ya que esta pegado entre las tarjetas y se ve mal */
+
+.maravilla {
+    flex: 1 1 300px;
+}
+
