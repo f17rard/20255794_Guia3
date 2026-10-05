@@ -20,6 +20,11 @@ body {
     background-color: var(--color-fondo);
 }
 
+/* evita que el encabezado tape los enlaces internos */
+html {
+    scroll-padding-top: 5rem;
+}
+
 .contenedor{
     width: 90%;
     max-width: 1140px;
@@ -49,6 +54,11 @@ a:hover, a:focus-visible {
 .encabezado-principal{
     color: var(--color-superficie);
     background-color: var(--color-principal);
+    /* sticky no se pegaba sin el top, y el z-index tiene que ser mayor
+       que el de las etiquetas para que no pasen por encima al hacer scroll */
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .marca {
@@ -56,6 +66,12 @@ a:hover, a:focus-visible {
     font-size: 1.15rem;
     font-weight: bold;
     text-decoration: none;
+}
+
+/* sin esto la marca se ponia verde sobre verde con el hover */
+.marca:hover,
+.marca:focus-visible {
+    color: var(--color-contraste);
 }
 
 .barra-navegacion{
@@ -97,7 +113,10 @@ a:hover, a:focus-visible {
 
 .presentacion h1 {
     width: 760px;
+    width: auto;
+    max-width: 760px;
     margin-bottom: 1rem;
+    margin-top: 0;
     font-size: 2.5rem;
 }
 
@@ -150,6 +169,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+    justify-content: center;
 }
 
 /* a) el flexbox forma una sola fila de las 7 maravillas
@@ -158,5 +178,121 @@ h2 {
 
 .maravilla {
     flex: 1 1 300px;
+    /* la ultima tarjeta crecia de mas por el flex-grow: 1, ya que iba sola en su fila,
+       por eso se limita con max-width.
+       overflow: hidden corta lo que sobresale, asi la foto respeta las esquinas redondeadas */
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    overflow: hidden;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px var(--color-sombra);
 }
 
+/* relative sin top ni left no mueve nada, pero hace que la etiqueta
+   se ubique respecto a la imagen y no a toda la pagina.
+   en las pruebas: relative mueve la tarjeta pero deja su espacio, y absolute
+   la saca del flujo y las demas ocupan su lugar */
+.maravilla-imagen {
+    position: relative;
+}
+
+.continente {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.25rem 0.75rem;
+    color: var(--color-superficie);
+    background-color: var(--color-acento);
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* con altura fija las fotos se deformaban, sobre todo Petra que es vertical.
+   cover llena el espacio sin deformar pero recorta los bordes de la foto */
+.maravilla img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.maravilla-contenido {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.25rem;
+}
+
+.ubicacion {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+.maravilla h3 {
+    margin: 0.25rem 0 0.75rem;
+    font-size: 1.35rem;
+}
+
+/* el margin-top: auto se come el espacio libre de abajo y manda el enlace
+   al fondo de la tarjeta, asi quedan alineados */
+.maravilla-contenido a {
+    margin-top: auto;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+.seccion-historia {
+    padding: 3rem 0;
+    background-color: var(--color-fondo-secundario);
+}
+
+.historia-contenido {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+.historia-contenido > * {
+    flex: 1 1 300px;
+}
+
+/* fixed lo deja en su lugar respecto a la ventana, en cambio el encabezado
+   conserva su espacio y solo se pega al llegar arriba */
+.volver-arriba {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    color: var(--color-superficie);
+    background-color: var(--color-acento);
+    border: 2px solid var(--color-superficie);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.volver-arriba:hover,
+.volver-arriba:focus-visible {
+    color: var(--color-superficie);
+    background-color: var(--color-principal);
+}
+
+/* padding abajo grande para que el boton no tape el texto */
+.pie-pagina {
+    padding: 2rem 0 5rem;
+    color: var(--color-superficie);
+    background-color: var(--color-principal);
+}
