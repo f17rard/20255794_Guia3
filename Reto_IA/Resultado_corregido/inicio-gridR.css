@@ -143,7 +143,7 @@ ul, ol {
 }
 
 /* Enlace accesible para saltar al contenido */
-.skip-link {
+/* .skip-link {
   position: absolute;
   left: 15px;
   top: -100px;
@@ -154,7 +154,7 @@ ul, ol {
 }
 .skip-link:focus {
   top: 15px;
-}
+} */ /*Edicion*/
 
 /* =========================================================
    NIVEL 1: CSS GRID DE TODA LA PÁGINA (.site-shell)
